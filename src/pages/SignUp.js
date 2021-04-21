@@ -6,12 +6,13 @@ const SignUp = () => {
   const [password, setPassword] = useState('')
 
   const handleSubmit = (e) => {
-    e.preventDefault()
-    firebase.auth().createUserWithEmailAndPassword(email, password)
-    .catch(err => {
-      console.log(err)
-    })  
+      e.preventDefault()
+      firebase.auth().createUserWithEmailAndPassword(email, password)
+      .catch(err => {
+        console.log(err)
+      })
   }
+
   return (
     <div>
       <h1>Sign Up</h1>
