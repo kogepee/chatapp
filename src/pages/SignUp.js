@@ -24,6 +24,9 @@ const SignUp = () => {
             type='email'
             id='email'
             placeholder='Email'
+            onChange = {(e) => {
+              setEmail(e.target.value)
+            }}
             />
         </div>
         <div>
@@ -33,6 +36,9 @@ const SignUp = () => {
             type='password'
             id='password'
             placeholder='Password'
+            onChange = {(e) => {
+              setPassword(e.target.value)
+            }}
           />
         </div>
         <button type='submit'>Sign Up</button>
