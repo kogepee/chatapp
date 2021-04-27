@@ -1,15 +1,25 @@
-import React from 'react'
-import { useState } from 'react/cjs/react.development'
+import React, {useState, useContext} from 'react'
+import { Redirect } from 'react-router'
+import { AuthContext } from '../AuthService'
 import firebase from '../config/firebase'
 import SignUp from './SignUp'
 
-const Login = () => {
+const Login = ({ history }) => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+
+  const user = useContext(AuthContext)
+
+  if (user) {
+    return <Redirect to="/" />
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault()
     firebase.auth().signInWithEmailAndPassword(email, password)
+    .then(() => {
+      history.push("/")
+    })
     .catch(err => {
       console.log(err)
     })
