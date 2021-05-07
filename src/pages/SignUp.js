@@ -4,10 +4,16 @@ import firebase from '../config/firebase'
 const SignUp = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [name, setName] = useState('')
 
   const handleSubmit = (e) => {
       e.preventDefault()
       firebase.auth().createUserWithEmailAndPassword(email, password)
+      .then(({ user }) => {
+        user.updateProfile({
+          displayName: name
+        })
+      })
       .catch(err => {
         console.log(err)
       })

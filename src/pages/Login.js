@@ -2,7 +2,6 @@ import React, {useState, useContext} from 'react'
 import { Redirect } from 'react-router'
 import { AuthContext } from '../AuthService'
 import firebase from '../config/firebase'
-import SignUp from './SignUp'
 
 const Login = ({ history }) => {
   const [email, setEmail] = useState('')
@@ -18,7 +17,7 @@ const Login = ({ history }) => {
     e.preventDefault()
     firebase.auth().signInWithEmailAndPassword(email, password)
     .then(() => {
-      history.push("/")
+      history.push("/")  //"/"に遷移
     })
     .catch(err => {
       console.log(err)

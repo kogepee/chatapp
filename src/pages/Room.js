@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import firebase from '../config/firebase'
 
 const Room = () => {
@@ -15,6 +15,15 @@ const Room = () => {
             })
     }, [])
 
+    const user = useContext('')
+
+    const handleSubmit = () => {
+      firebase.firestore().collection('messages').add({
+        content :value,
+        user: user.displayName
+      })
+    }
+
   return (
     <>
       <h1>Room</h1>
@@ -22,6 +31,9 @@ const Room = () => {
         <li>
           sample user : sample message
         </li>
+        {messages?.map((message) => {
+          return <li>{message.contetn}</li>
+        })}
       </ul>
       <form>
         <input
